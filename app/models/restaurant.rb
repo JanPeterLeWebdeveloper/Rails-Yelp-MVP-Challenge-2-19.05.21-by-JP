@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class Restaurant < ApplicationRecord
-    has_many :reviews, dependent: :destroy
-    validates_inclusion_of :rating => 0..5
-    validates :category => ["chinese", "italian", "japanese", "french", "belgian"]
+  has_many :reviews, dependent: :destroy
+
+  validates :category, inclusion: { in: %w[chinese italian japanese french belgian] }
+  validates :name, :address, presence: true
 end
